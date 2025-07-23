@@ -232,3 +232,192 @@ fancy-react (Monorepo)
         ├── memory-usage/                    # 内存使用
         └── bundle-size/                     # 包大小
 ```
+
+## 目录结构
+
+```bash
+fancy-react/
+├── .github/                                # GitHub Actions CI/CD 配置
+│   ├── workflows/
+│   │   ├── ci.yml                          # 持续集成工作流
+│   │   └── release.yml                     # 发布工作流
+│
+├── .vscode/                                # VSCode 编辑器配置
+│   ├── extensions.json                     # 推荐扩展
+│   └── settings.json                       # 工作区设置
+│
+├── node_modules/                           # pnpm 安装的依赖
+│
+├── packages/                               # 所有 Monorepo NPM 包的根目录
+│   ├── core/                               # @fancy-react/core - React 核心
+│   │   ├── src/
+│   │   │   ├── components/                 # 组件系统 (Component, FunctionComponent, ForwardRef, Memo, Lazy, ErrorBoundary)
+│   │   │   ├── hooks/                      # Hooks Runtime (Built-in Hooks, Custom Hooks Support, Hooks Scheduler)
+│   │   │   ├── context/                    # 上下文系统 (Context API, Provider/Consumer, Context Propagation)
+│   │   │   ├── elements/                   # 元素系统 (createElement, Fragment, Portal, Suspense)
+│   │   │   ├── types/                      # 类型系统 (TypeScript Definitions, Dev Mode Warnings)
+│   │   │   └── index.ts                    # 包入口文件
+│   │   ├── test/                           # 单元测试
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── reconciler/                         # @fancy-react/reconciler - 协调器 (Fiber)
+│   │   ├── src/
+│   │   │   ├── fiber/                      # Fiber 架构 (FiberNode, FiberTreeConstruction, DoubleBuffering, WorkLoop)
+│   │   │   ├── algorithm/                  # 协调算法 (Diff, Key-based, Component, List)
+│   │   │   ├── scheduling/                 # 优先级调度 (LaneModel, TimeSlicing, ConcurrentFeatures, Interruption)
+│   │   │   ├── effects/                    # 副作用管理 (EffectList, CommitPhase, LayoutEffects, PassiveEffects)
+│   │   │   ├── hostConfig/                 # 宿主配置接口定义 (PlatformAbstraction, HostComponentInterface, EventSystemInterface)
+│   │   │   └── index.ts
+│   │   ├── test/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── scheduler/                          # @fancy-react/scheduler - 调度器
+│   │   ├── src/
+│   │   │   ├── task/                       # 任务调度 (PriorityQueue, TaskPrioritization, DeadlineScheduling, YieldControl)
+│   │   │   ├── time/                       # 时间管理 (FrameTiming, IdleCallback, PerformanceMonitoring)
+│   │   │   ├── concurrent/                 # 并发模式 (BatchedUpdates, SuspenseSupport, ErrorRecovery)
+│   │   │   └── index.ts
+│   │   ├── test/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── shared/                             # @fancy-react/shared - 共享工具
+│   │   ├── src/
+│   │   │   ├── utils/                      # 工具函数 (Object, Array, Function, TypeGuards)
+│   │   │   ├── constants/                  # 常量定义 (ReactTypes, PriorityLevels, FiberFlags, HookTypes)
+│   │   │   ├── errors/                     # 错误处理 (ErrorBoundaryUtils, DevWarnings, ErrorRecovery)
+│   │   │   ├── features/                   # 特性标志 (Experimental, Platform, Performance)
+│   │   │   └── index.ts
+│   │   ├── test/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── dom/                                # @fancy-react/dom - Web 平台渲染器
+│   │   ├── src/
+│   │   │   ├── hostConfig/                 # DOM 宿主配置 (DOMNodeOperations, PropertyHandling, StyleManagement, TextContentHandling)
+│   │   │   ├── events/                     # 事件系统 (SyntheticEvents, EventDelegation, EventPooling, EventPriorities, BrowserCompatibility)
+│   │   │   ├── ssr/                        # 服务端 HTML 渲染与客户端注水 (SSRRenderer(HTML Output), Hydration(Client Side), StreamRendering(HTML Stream), PartialHydration)
+│   │   │   ├── api/                        # 客户端 API (createRoot, render, unmountComponentAtNode, findDOMNode)
+│   │   │   ├── devtools/                   # 开发工具集成 (ReactDevToolsSupport, Profiling, DebugInformation)
+│   │   │   └── index.ts
+│   │   ├── test/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── native/                             # @fancy-react/native - React Native 渲染器
+│   │   ├── src/
+│   │   │   ├── hostConfig/                 # Native 宿主配置 (NativeComponentMapping, PropsTransformation, LayoutCalculation, NativeModuleInterface)
+│   │   │   ├── bridge/                     # 桥接系统 (JavaScriptBridge, NativeMethodCalls, EventHandling, AsyncCommunication)
+│   │   │   ├── layout/                     # 布局引擎 (Flexbox, AbsolutePositioning, DimensionCalculation, LayoutTree)
+│   │   │   ├── styles/                     # 样式系统 (StyleSheet, StyleResolution, CSS-in-JS, PlatformStyles)
+│   │   │   ├── animation/                  # 动画系统 (NativeAnimations, JavaScriptAnimations, GestureHandling, ReanimatedSupport)
+│   │   │   ├── platforms/                  # 平台服务 (iOSPlatform, AndroidPlatform, PlatformUtilities)
+│   │   │   └── index.ts
+│   │   ├── test/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── server-runtime/                     # @fancy-react/server-runtime - 服务端运行时 (通用 SSR 逻辑与 RSC)
+│   │   ├── src/
+│   │   │   ├── hostConfigBridge/           # 宿主配置桥接器 (SSRNodeOperations, DataSerialization, StreamManagement)
+│   │   │   ├── pipeline/                   # 渲染管道 (InitialRender, SuspenseHandling, ErrorRecovery, DataFetchingOrchestration)
+│   │   │   ├── hydration/                  # 注水元数据生成 (ClientManifestGeneration, HydrationScriptInjection, BoundaryMarkers)
+│   │   │   ├── rsc/                        # Server Components (RSCImplementation, StreamingSupport, DataFetching, AssetManagement)
+│   │   │   └── index.ts
+│   │   ├── test/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── devtools/                           # @fancy-react/devtools - 开发者工具
+│   │   ├── src/
+│   │   │   ├── extension/                  # 浏览器扩展
+│   │   │   ├── profiler/                   # 性能分析器
+│   │   │   ├── inspector/                  # 组件检查器
+│   │   │   ├── timetraveledbg/             # 时间旅行调试
+│   │   │   └── index.ts
+│   │   ├── test/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── test-utils/                         # @fancy-react/test-utils - 测试工具
+│   │   ├── src/
+│   │   │   ├── testing-library/            # Testing Library 适配
+│   │   │   ├── test-renderer/              # 测试渲染器
+│   │   │   ├── mocks/                      # Mock 工具
+│   │   │   ├── shallow-renderer/           # 浅渲染器
+│   │   │   └── index.ts
+│   │   ├── test/
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   └── eslint-plugin/                      # @fancy-react/eslint-plugin - ESLint 插件
+│       ├── src/
+│       │   ├── rules/                      # ESLint 规则 (Hooks, JSX, Performance)
+│       │   ├── configs/                    # 配置预设
+│       │   └── index.ts
+│       ├── test/
+│       ├── package.json
+│       └── tsconfig.json
+│
+├── build-scripts/                          # Monorepo 级别的构建脚本和配置
+│   ├── rollup.config.ts                    # Rollup 生产构建配置
+│   ├── webpack.config.ts                   # Webpack 示例应用配置 (如果示例需要)
+│   └── vite.config.ts                      # Vite 开发服务器配置 (用于本地开发和示例)
+│
+├── scripts/                                # Monorepo 级别的工具脚本
+│   ├── build.ts                            # 全局构建脚本 (调用各个包的构建)
+│   ├── test.ts                             # 全局测试脚本 (运行所有包的测试)
+│   ├── release.ts                          # 发布脚本 (使用 Changesets)
+│   ├── benchmark.ts                        # 基准测试运行脚本
+│   └── clean.ts                            # 清理脚本
+│
+├── docs/                                   # 项目文档
+│   ├── api/                                # API 文档 (由 TypeDoc 等工具生成或手写)
+│   ├── guides/                             # 使用指南、入门教程
+│   ├── internals/                          # 内部实现文档 (例如，详细的 Fiber 机制图解)
+│   └── README.md                           # 文档目录说明
+│
+├── examples/                               # 示例应用
+│   ├── basic-web-app/                      # 基础 Web 应用 (使用 @fancy-react/dom)
+│   │   ├── src/
+│   │   ├── public/
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── ssr-app/                            # SSR 应用 (使用 @fancy-react/dom 和 @fancy-react/server-runtime)
+│   │   ├── src/
+│   │   ├── server/
+│   │   ├── public/
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   └── tsconfig.json
+│   │
+│   ├── native-app/                         # React Native 应用 (使用 @fancy-react/native)
+│   │   ├── App.tsx
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── android/
+│   │   └── ios/
+│   │
+│   └── concurrent-features/                # 并发特性示例
+│       ├── src/
+│       ├── package.json
+│       └── tsconfig.json
+│
+├── benchmarks/                             # 性能基准测试
+│   ├── render-performance/                 # 渲染性能测试
+│   ├── memory-usage/                       # 内存使用测试
+│   ├── bundle-size/                        # 包大小分析
+│   └── index.ts                            # 基准测试入口
+│
+├── package.json                            # Monorepo 根 package.json (pnpm-workspace, scripts, devDependencies)
+├── pnpm-workspace.yaml                     # pnpm workspace 配置文件 (定义 packages 路径)
+├── tsconfig.base.json                      # Monorepo 共享的 TypeScript 配置
+├── .prettierrc.js                          # Prettier 配置
+├── .eslintrc.js                            # ESLint 配置
+├── README.md                               # 项目总 README
+└── CHANGELOG.md                            # 变更日志 (由 Changesets 维护)
+```
