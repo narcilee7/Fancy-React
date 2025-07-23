@@ -45,5 +45,8 @@
     "packages/*",
     "examples/*",
     "benchmarks/*"
-  ]
+  ],
+  "dependencies": {
+    "rollup-plugin-typescript2": "^0.36.0"
+  }
 }
