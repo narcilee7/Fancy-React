@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx", // 使用 Babel 转换 JSX
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler", // 或者 "node"
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true, // 不需要 TypeScript 发出 JS 文件，由 Rollup/Vite 处理
+    "declaration": true, // 生成类型定义文件
+    "declarationMap": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@fancy-react/*": ["packages/*/src"] // 便于内部模块导入
+    }
+  },
+  "exclude": ["node_modules", "dist", "build"]
+}

@@ -1,0 +1,7 @@
+packages:
+  - 'packages/*'
+  - 'examples/*'
+  - 'build-scripts/*'
+  - 'scripts/*'
+  - 'docs/*'
+  - 'benchmarks/*'

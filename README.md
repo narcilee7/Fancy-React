@@ -421,3 +421,12 @@ fancy-react/
 ├── README.md                               # 项目总 README
 └── CHANGELOG.md                            # 变更日志 (由 Changesets 维护)
 ```
+
+## 实现思路
+
+1. 从核心到平台，从内到外: 从`Core Layer`开始，渐进式地实现
+2. TDD: 测试驱动开发
+3. 模块化开发、增量开发
+4. TS优先
+5. 参考React源码实现
+
