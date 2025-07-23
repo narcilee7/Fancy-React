@@ -1,12 +1,8 @@
-function isFunction(value: unknown): value is Function {
-  return typeof value === 'function'
-}
-
-function isObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value)
-}
-
-export {
-  isFunction,
-  isObject
-}
+/**
+ * 导出所有工具函数
+ */
+export * from './objectUtils';
+export * from './functionUtils';
+export * from './typeGuards';
+export * from './performanceUtils';
+export * from './arrayUtils'

@@ -1,24 +1,54 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "jsx": "react-jsx", // 使用 Babel 转换 JSX
-    "strict": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "bundler", // 或者 "node"
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true, // 不需要 TypeScript 发出 JS 文件，由 Rollup/Vite 处理
-    "declaration": true, // 生成类型定义文件
+    "skipLibCheck": true,
+    "noEmit": true,
+    
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    
+    "incremental": true,
+    "composite": true,
+    "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    
     "baseUrl": ".",
     "paths": {
-      "@fancy-react/*": ["packages/*/src"] // 便于内部模块导入
+      "@fancy-react/core": ["packages/core/src"],
+      "@fancy-react/reconciler": ["packages/reconciler/src"],
+      "@fancy-react/scheduler": ["packages/scheduler/src"],
+      "@fancy-react/shared": ["packages/shared/src"],
+      "@fancy-react/dom": ["packages/dom/src"],
+      "@fancy-react/native": ["packages/native/src"],
+      "@fancy-react/server-runtime": ["packages/server-runtime/src"],
+      "@fancy-react/devtools": ["packages/devtools/src"],
+      "@fancy-react/test-utils": ["packages/test-utils/src"],
+      "@fancy-react/eslint-plugin": ["packages/eslint-plugin/src"]
     }
   },
-  "exclude": ["node_modules", "dist", "build"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".next"
+  ]
 }
