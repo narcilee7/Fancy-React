@@ -4,8 +4,9 @@
  */
 
 import type { DOMContainer, ReactRoot } from './types';
-import { createFiberRoot } from '@fancy-react/reconciler';
+import { createFiberNode } from '@fancy-react/reconciler';
 import { renderRoot } from '@fancy-react/reconciler';
+import { WorkTag } from '@fancy-react/shared';
 
 /**
  * 创建React根节点
@@ -15,7 +16,7 @@ import { renderRoot } from '@fancy-react/reconciler';
  */
 export function createRoot(container: DOMContainer, options?: { hydrate?: boolean }): ReactRoot {
   // 创建Fiber根节点
-  const root = createFiberRoot(container, options?.hydrate || false);
+  const root = createFiberNode(WorkTag.HostRoot, null, null);
   
   // 创建ReactRoot对象
   const reactRoot: ReactRoot = {
@@ -27,7 +28,7 @@ export function createRoot(container: DOMContainer, options?: { hydrate?: boolea
       };
       
       // 调度更新
-      root.current.updateQueue = update;
+      root.updateQueue = update;
       renderRoot(root);
     },
     
@@ -38,7 +39,7 @@ export function createRoot(container: DOMContainer, options?: { hydrate?: boolea
         lane: 1,
       };
       
-      root.current.updateQueue = update;
+      root.updateQueue = update;
       renderRoot(root);
     }
   };

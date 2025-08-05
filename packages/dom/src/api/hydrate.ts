@@ -4,8 +4,9 @@
  */
 
 import type { DOMContainer } from './types';
-import { createFiberRoot } from '@fancy-react/reconciler';
+import { createFiberNode, createFiberRoot } from '@fancy-react/reconciler';
 import { renderRoot } from '@fancy-react/reconciler';
+import { WorkTag } from '@fancy-react/shared';
 
 /**
  * 注水React元素到已有的DOM容器
@@ -15,7 +16,7 @@ import { renderRoot } from '@fancy-react/reconciler';
  */
 export function hydrate(element: any, container: DOMContainer, callback?: () => void) {
   // 创建Fiber根节点，启用注水模式
-  const root = createFiberRoot(container, true);
+  const root = createFiberNode(WorkTag.HostRoot, null, null);
   
   // 创建初始更新
   const update = {
@@ -24,7 +25,7 @@ export function hydrate(element: any, container: DOMContainer, callback?: () => 
   };
   
   // 调度注水
-  root.current.updateQueue = update;
+  root.updateQueue = update;
   renderRoot(root);
   
   // 执行回调
