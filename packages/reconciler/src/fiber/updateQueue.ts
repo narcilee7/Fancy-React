@@ -42,8 +42,8 @@ export function processUpdateQueue(baseState: any, queue: UpdateQueue): any {
     let first = pendingQueue.next;
     let update = first;
     do {
-      result = typeof update.payload === 'function' ? update.payload(result) : update.payload;
-      update = update.next!;
+      result = typeof update!.payload === 'function' ? update!.payload(result) : update!.payload;
+      update = update!.next as Update | null;
     } while (update !== first && update !== null);
     queue.shared.pending = null;
     return result;

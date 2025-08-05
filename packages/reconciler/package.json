@@ -1,6 +1,6 @@
 {
   "name": "@fancy-react/reconciler",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "React协调器 - Fancy React的Fiber架构实现",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -31,6 +31,7 @@
     "react": "^18.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.3.1",
     "@rollup/plugin-terser": "^0.4.4",

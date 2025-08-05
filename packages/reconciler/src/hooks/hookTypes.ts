@@ -15,4 +15,4 @@ export interface Effect {
 export interface HookList {
   memorizedState: Hook | null;
   lastEffect: Effect | null;
-} 
+}

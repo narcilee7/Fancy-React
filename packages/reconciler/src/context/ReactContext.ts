@@ -1,4 +1,4 @@
-import type { ReactNode } from '../../../shared/src/types';
+import type { ReactNode } from '@fancy-react/shared';
 
 export interface Context<T> {
   /** 类型 */
@@ -63,4 +63,4 @@ export function createContext<T>(defaultValue: T): Context<T> {
   } as any;
 
   return context;
-} 
+}

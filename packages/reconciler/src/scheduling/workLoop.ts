@@ -2,7 +2,7 @@ import type { FiberNode } from '../fiber/FiberNode';
 import { beginWork } from '../algorithm/beginWork';
 import { completeWork } from '../algorithm/completeWork';
 import { scheduleCallback, shouldYieldToHost, getCurrentPriorityLevel } from './scheduler';
-import { NormalPriority } from '../../../shared/src/constants/SchedulerPriority';
+import { NormalPriority } from '@fancy-react/shared';
 
 // 当前正在执行的工作 fiberNode
 let workInProgress: FiberNode | null = null;

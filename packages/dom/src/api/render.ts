@@ -4,8 +4,8 @@
  */
 
 import type { DOMContainer } from './types';
-import { createFiberRoot } from '../../reconciler/src/fiber/FiberRootNode';
-import { renderRoot } from '../../reconciler/src/index';
+import { createFiberRootNode } from '@fancy-react/reconciler';
+import { renderRoot } from '@fancy-react/reconciler';
 
 /**
  * 渲染React元素到DOM容器
@@ -15,7 +15,7 @@ import { renderRoot } from '../../reconciler/src/index';
  */
 export function render(element: any, container: DOMContainer, callback?: () => void) {
   // 创建Fiber根节点
-  const root = createFiberRoot(container, false);
+  const root = createFiberRootNode(container, false);
   
   // 创建初始更新
   const update = {

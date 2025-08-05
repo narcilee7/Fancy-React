@@ -1,5 +1,5 @@
 import type { FiberNode } from '../fiber/FiberNode';
-import { NoFlags, Placement, Update, Deletion, ChildDeletion, RefFlag, LayoutMask, PassiveMask } from '../../../shared/src/constants/FiberFlags';
+import { NoFlags, Placement, Update, Deletion, ChildDeletion, RefFlag, LayoutMask, PassiveMask, StaticMask } from '@fancy-react/shared';
 
 export function markUpdate(fiber: FiberNode) {
   fiber.flags |= Update;
@@ -18,15 +18,15 @@ export function markChildDeletion(fiber: FiberNode) {
 }
 
 export function markRef(fiber: FiberNode) {
-  fiber.flags |= Ref;
+  fiber.flags |= RefFlag;
 }
 
 export function markLayoutEffect(fiber: FiberNode) {
-  fiber.flags |= LayoutMask;
+  fiber.flags |= LayoutMask | StaticMask;
 }
 
 export function markPassiveEffect(fiber: FiberNode) {
-  fiber.flags |= PassiveMask;
+  fiber.flags |= PassiveMask | StaticMask;
 }
 
 export function bubbleProperties(fiber: FiberNode) {

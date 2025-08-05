@@ -1,4 +1,4 @@
-import { ImmediatePriority, UserBlockingPriority, NormalPriority, LowPriority, IdlePriority } from '../../../shared/src/constants/SchedulerPriority';
+import { ImmediatePriority, UserBlockingPriority, NormalPriority, LowPriority, IdlePriority } from '@fancy-react/shared';
 
 export interface SchedulerCallback {
   (): void;
@@ -82,7 +82,7 @@ export function scheduleCallback(
  * @param task 任务
  */
 export function cancelCallback(task: SchedulerTask): void {
-  task.callback = null;
+  task.callback = null as any;
 }
 
 /**
@@ -141,7 +141,7 @@ function flushWork(hasTimeRemaining: boolean, initialTime: number): boolean {
 
     const callback = currentTask.callback;
     if (typeof callback === 'function') {
-      currentTask.callback = null;
+      currentTask.callback = null as any;
       currentPriorityLevel = currentTask.priorityLevel;
       const didUserCallbackTimeout = currentTask.expirationTime <= currentTime;
       callback();
@@ -164,7 +164,7 @@ function flushWork(hasTimeRemaining: boolean, initialTime: number): boolean {
 }
 
 function peek(queue: SchedulerTask[]): SchedulerTask | null {
-  return queue.length > 0 ? queue[0] : null;
+  return queue.length > 0 ? queue[0] as SchedulerTask : null;
 }
 
 function pop(queue: SchedulerTask[]): SchedulerTask | null {

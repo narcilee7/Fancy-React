@@ -1,5 +1,5 @@
 import type { FiberNode } from '../fiber/FiberNode';
-import { WorkTag } from '../../../shared/src/constants/WorkTag';
+import { WorkTag } from '@fancy-react/shared';
 import { createInstance, appendInitialChild, finalizeInitialChildren } from '../hostConfig/hostConfig';
 import { bubbleProperties, markRef } from '../effects/effectTags';
 

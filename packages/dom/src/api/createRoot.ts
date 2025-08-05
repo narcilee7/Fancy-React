@@ -4,7 +4,7 @@
  */
 
 import type { DOMContainer, ReactRoot } from './types';
-import { createFiberRootNode } from '@fancy-react/reconciler';
+import { createFiberRoot } from '@fancy-react/reconciler';
 import { renderRoot } from '@fancy-react/reconciler';
 
 /**
@@ -15,7 +15,7 @@ import { renderRoot } from '@fancy-react/reconciler';
  */
 export function createRoot(container: DOMContainer, options?: { hydrate?: boolean }): ReactRoot {
   // 创建Fiber根节点
-  const root = createFiberRootNode(container, options?.hydrate || false);
+  const root = createFiberRoot(container, options?.hydrate || false);
   
   // 创建ReactRoot对象
   const reactRoot: ReactRoot = {

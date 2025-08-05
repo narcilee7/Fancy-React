@@ -1,6 +1,6 @@
 {
   "name": "@fancy-react/shared",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "共享工具和类型 - Fancy React的共享模块",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
