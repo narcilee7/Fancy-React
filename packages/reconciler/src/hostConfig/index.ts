@@ -1,7 +1,12 @@
 /**
  * HostConfig入口
- * 根据环境导出相应的宿主环境配置
+ * 提供reconciler与宿主环境的连接
  */
 
-// 暂时使用基础的hostConfig实现
-export * from './hostConfig'; 
+export * from './hostConfig';
+
+// 初始化函数，用于连接DOM hostConfig
+export function initializeHostConfig(hostConfig: any) {
+  const { setHostConfig } = require('./hostConfig');
+  setHostConfig(hostConfig);
+}

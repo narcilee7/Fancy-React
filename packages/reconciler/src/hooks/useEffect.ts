@@ -25,7 +25,8 @@ function updateWorkInProgressHook(): Hook {
   if (!workInProgressHook) {
     nextCurrentHook = currentlyRenderingFiber.memorizedState;
   } else {
-    nextCurrentHook = workInProgressHook.next;
+    // TODO: 这里需要优化，尽量减少类型断言
+    nextCurrentHook = workInProgressHook.next as Hook;
   }
   workInProgressHook = nextCurrentHook;
   return workInProgressHook!;

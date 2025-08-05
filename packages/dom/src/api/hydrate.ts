@@ -4,8 +4,8 @@
  */
 
 import type { DOMContainer } from './types';
-import { createFiberRoot } from '../../reconciler/src/fiber/FiberRootNode';
-import { renderRoot } from '../../reconciler/src/index';
+import { createFiberRoot } from '@fancy-react/reconciler';
+import { renderRoot } from '@fancy-react/reconciler';
 
 /**
  * 注水React元素到已有的DOM容器

@@ -1,6 +1,6 @@
 export * from './fiber';
 export * from './algorithm';
-export * from './hostConfig';
+export * from './hostConfig/index';
 export * from './scheduling';
 export * from './hooks';
 export * from './context';

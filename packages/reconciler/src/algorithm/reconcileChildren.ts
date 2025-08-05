@@ -1,7 +1,7 @@
 import type { FiberNode } from '../fiber/FiberNode';
 import { createFiberNode } from '../fiber/FiberNode';
-import { WorkTag } from '../../../shared/src/constants/WorkTag';
-import type { ReactElement, Key } from '../../../shared/src/types';
+import { WorkTag } from '@fancy-react/shared';
+import type { ReactElement, Key } from '@fancy-react/shared';
 
 function isReactElement(child: any): child is ReactElement {
   return typeof child === 'object' && child !== null && (child as ReactElement).type;
@@ -30,7 +30,7 @@ export function reconcileChildren(
       if (isReactElement(child)) {
         // key diff
         if (child.key != null && existingKeyed[child.key]) {
-          fiber = existingKeyed[child.key];
+          fiber = existingKeyed[child.key] as FiberNode;
           fiber.pendingProps = child.props;
           fiber.type = child.type;
           fiber.return = returnFiber;
@@ -72,4 +72,4 @@ export function reconcileChildren(
     return;
   }
   // TODO: 支持 Fragment、删除多余旧节点等
-} 
+}

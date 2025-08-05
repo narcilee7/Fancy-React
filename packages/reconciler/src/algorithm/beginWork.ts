@@ -1,9 +1,9 @@
 import type { FiberNode } from '../fiber/FiberNode';
-import { WorkTag } from '../../../shared/src/constants/WorkTag';
+import { WorkTag } from '@fancy-react/shared';
 import { reconcileChildren } from './reconcileChildren';
 import { ReactCurrentDispatcher, mountDispatcher, updateDispatcher } from '../hooks';
 import { prepareHooks } from '../hooks/useState';
-import { REACT_PROVIDER_TYPE, REACT_CONSUMER_TYPE } from '../context/ReactContext';
+// import { REACT_PROVIDER_TYPE, REACT_CONSUMER_TYPE } from '../context/ReactContext';
 
 export function beginWork(current: FiberNode | null, workInProgress: FiberNode): FiberNode | null {
   switch (workInProgress.tag) {

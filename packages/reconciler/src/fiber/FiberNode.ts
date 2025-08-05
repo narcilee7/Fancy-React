@@ -1,6 +1,4 @@
-import type { Key, Ref } from '@fancy-react/shared';
-import type { WorkTagType } from '@fancy-react/shared';
-import type { FiberFlags } from '@fancy-react/shared';
+import type { Key, Ref, WorkTagType, FiberFlags } from '@fancy-react/shared';
 
 export interface FiberNode {
   /** Fiber 类型（FunctionComponent、HostComponent等） */

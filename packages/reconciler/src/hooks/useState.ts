@@ -1,5 +1,5 @@
 import type { Hook } from './hookTypes';
-import { ReactCurrentDispatcher } from './ReactCurrentDispatcher';
+// import { ReactCurrentDispatcher } from './ReactCurrentDispatcher';
 import { createUpdate, enqueueUpdate, createUpdateQueue, processUpdateQueue } from '../fiber/updateQueue';
 import { scheduleUpdateOnFiber } from '../index';
 
@@ -29,7 +29,8 @@ function updateWorkInProgressHook(): Hook {
   if (!workInProgressHook) {
     nextCurrentHook = currentlyRenderingFiber.memorizedState;
   } else {
-    nextCurrentHook = workInProgressHook.next;
+    // TODO: 这里需要优化，尽量减少类型断言, 从根本上解决问题
+    nextCurrentHook = workInProgressHook.next as Hook;
   }
   workInProgressHook = nextCurrentHook;
   return workInProgressHook!;

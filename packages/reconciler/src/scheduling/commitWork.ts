@@ -1,5 +1,5 @@
 import type { FiberNode } from '../fiber/FiberNode';
-import { Placement, Update, Deletion } from '../../../shared/src/constants/FiberFlags';
+import { Placement, Update, Deletion } from '@fancy-react/shared';
 import { createInstance, appendInitialChild, updateInstance, removeChild } from '../hostConfig/hostConfig';
 
 /**
@@ -109,6 +109,9 @@ function commitDeletion(fiber: FiberNode) {
     if (node.stateNode && node.return && node.return.stateNode && (node.tag === 4 || node.tag === 5)) {
       removeChild(node.return.stateNode, node.stateNode);
     }
-    node = node.child;
+    if (node.child) {
+      node = node.child;
+    }
+    // TODO: 逻辑完善
   }
 } 
