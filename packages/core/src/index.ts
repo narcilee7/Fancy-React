@@ -1,12 +1,12 @@
-import { enqueueUpdate, createUpdate, processUpdateQueue, createUpdateQueue } from '../../reconciler/src/fiber/updateQueue';
-import { scheduleUpdateOnFiber } from '../../reconciler/src';
+// 核心API导出
+export { createElement, createFragment, Fragment } from './elements/createElement';
+export { Component, isFunctionComponent, isClassComponent } from './components/Components';
+export { createContext } from './context/ReactContext';
 
-// 简化版 setState API
-export function setState(fiber: any, partialState: any) {
-  if (!fiber.updateQueue) {
-    fiber.updateQueue = createUpdateQueue();
-  }
-  const update = createUpdate(partialState);
-  enqueueUpdate(fiber.updateQueue, update);
-  scheduleUpdateOnFiber(fiber);
-}
+// 类型导出
+export type { ReactElement, ReactNode, Key, Ref } from './types/ReactElement';
+export type { FunctionComponent, ClassComponent } from './components/Components';
+export type { ReactContext, ReactProviderType, ReactConsumerType } from './context/ReactContext';
+
+// 与reconciler的集成
+// export { setState } from './setState';

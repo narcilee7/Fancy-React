@@ -1,0 +1,15 @@
+{
+  "name": "fancy-react-basic-example",
+  "version": "0.1.0",
+  "description": "Fancy-React 基础示例应用",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "typescript": "^5.3.0"
+  }
+}
