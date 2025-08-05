@@ -26,4 +26,3 @@ export function scheduleUpdateOnFiber(fiber: any) {
  * 
  * Fiber架构：以FiberNode为核心，支持双缓冲树、可中断、优先级调度、异步渲染、并发渲染等能力
  */
-

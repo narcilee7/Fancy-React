@@ -1,33 +1,42 @@
-import type { ReactElement } from '../types/ReactElement';
+import type { ReactElement, ReactNode, Key, Ref } from '../types/ReactElement';
 
-// 唯一标识 React 元素类型
-export const REACT_ELEMENT_TYPE = Symbol.for('fancy.react.element');
+interface ElementConfig {
+  type: any;
+  key?: Key;
+  ref?: Ref;
+  props: any;
+}
 
-export function createElement(
+/**
+ * 创建React元素
+ * @param type 元素类型（函数组件、类组件、DOM标签）
+ * @param config 配置对象（包含key、ref、props等）
+ * @param children 子元素
+ * @returns ReactElement
+ */
+function createElement(
   type: any,
-  config: Record<string, any> | null,
-  ...children: any[]
+  config: any,
+  ...children: ReactNode[]
 ): ReactElement {
-  const props: Record<string, any> = {};
-  let key: string | null = null;
-  let ref: any = null;
+  let key: Key = null;
+  let ref: Ref = null;
+  const props: any = {};
 
-  if (config != null) {
-    if (config.key !== undefined) {
-      key = '' + config.key;
-    }
-    if (config.ref !== undefined) {
-      ref = config.ref;
-    }
-    // 其余属性归入 props
-    for (const prop in config) {
-      if (prop !== 'key' && prop !== 'ref' && Object.prototype.hasOwnProperty.call(config, prop)) {
-        props[prop] = config[prop];
-      }
+  if (config.key !== undefined) {
+    key = config.key;
+  }
+  if (config.ref !== undefined) {
+    ref = config.ref;
+  }
+
+  for (const propName in config) {
+    if (config.hasOwnProperty(propName) && propName !== 'key' && propName !== 'ref') {
+      props[propName] = config[propName];
     }
   }
 
-  // 处理 children
+  // 处理children
   if (children.length === 1) {
     props.children = children[0];
   } else if (children.length > 1) {
@@ -35,10 +44,36 @@ export function createElement(
   }
 
   return {
+    $$typeof: Symbol.for('react.element'),
     type,
-    props,
     key,
     ref,
-    $$typeof: REACT_ELEMENT_TYPE,
+    props,
   };
+}
+
+/**
+ * 创建Fragment元素
+ */
+function createFragment(children: ReactNode[]): ReactElement {
+  return createElement(
+    Fragment, // 使用Fragment符号作为类型
+    null,
+    ...children
+  )
+}
+
+// 导出Fragment
+const Fragment = Symbol.for('react.fragment');
+
+export {
+  // Function
+  createElement,
+  createFragment,
+  // Symbol
+  Fragment,
+}
+
+export type {
+  ElementConfig,
 }
