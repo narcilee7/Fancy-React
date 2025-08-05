@@ -4,8 +4,9 @@
  */
 
 import type { DOMContainer } from './types';
-import { createFiberRootNode } from '@fancy-react/reconciler';
+import { createFiberNode } from '@fancy-react/reconciler';
 import { renderRoot } from '@fancy-react/reconciler';
+import { WorkTag } from '@fancy-react/shared';
 
 /**
  * 渲染React元素到DOM容器
@@ -15,7 +16,7 @@ import { renderRoot } from '@fancy-react/reconciler';
  */
 export function render(element: any, container: DOMContainer, callback?: () => void) {
   // 创建Fiber根节点
-  const root = createFiberRootNode(container, false);
+  const root = createFiberNode(WorkTag.HostRoot, null, null);
   
   // 创建初始更新
   const update = {
@@ -24,7 +25,7 @@ export function render(element: any, container: DOMContainer, callback?: () => v
   };
   
   // 调度渲染
-  root.current.updateQueue = update;
+  root.updateQueue = update;
   renderRoot(root);
   
   // 执行回调
