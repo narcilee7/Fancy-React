@@ -1,5 +1,5 @@
 import type { FiberNode } from '../fiber/FiberNode';
-import { NoFlags, Placement, Update, Deletion, ChildDeletion, Ref, LayoutMask, PassiveMask } from '../../../shared/src/constants/FiberFlags';
+import { NoFlags, Placement, Update, Deletion, ChildDeletion, RefFlag, LayoutMask, PassiveMask } from '../../../shared/src/constants/FiberFlags';
 
 export function markUpdate(fiber: FiberNode) {
   fiber.flags |= Update;

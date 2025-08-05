@@ -24,6 +24,8 @@ export default defineConfig([
       }
     ],
     external: [
+      '@fancy-react/shared',
+      '@fancy-react/core',
       'react'
     ],
     plugins: [
@@ -37,6 +39,7 @@ export default defineConfig([
         declarationDir: './dist',
         sourceMap: true
       }),
+      // 压缩
       terser()
     ]
   },
@@ -50,4 +53,4 @@ export default defineConfig([
     },
     plugins: [dts()]
   }
-]);
+]); 

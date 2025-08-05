@@ -24,6 +24,9 @@ export default defineConfig([
       }
     ],
     external: [
+      '@fancy-react/core',
+      '@fancy-react/reconciler', 
+      '@fancy-react/shared',
       'react'
     ],
     plugins: [

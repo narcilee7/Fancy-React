@@ -43,6 +43,12 @@ export interface ClassComponent<P = {}, S = {}> {
   };
 }
 
+// React Root类型
+export interface ReactRoot {
+  render(children: any): void;
+  unmount(): void;
+}
+
 // JSXElementConstructor 类型
 export type JSXElementConstructor<P> =
   | ((props: P) => ReactElement | null)

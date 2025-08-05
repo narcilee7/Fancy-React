@@ -24,6 +24,7 @@ export default defineConfig([
       }
     ],
     external: [
+      '@fancy-react/shared',
       'react'
     ],
     plugins: [
@@ -50,4 +51,4 @@ export default defineConfig([
     },
     plugins: [dts()]
   }
-]);
+]); 
