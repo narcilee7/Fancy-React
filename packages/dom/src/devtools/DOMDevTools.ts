@@ -15,21 +15,30 @@ export function initializeDevTools(): void {
   if (typeof window === 'undefined') return;
   
   // 检查是否已有DevTools
-  if ((window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__) {
-    devToolsHook = (window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__;
-    isDevToolsConnected = true;
-    
-    // 注册渲染器
-    devToolsHook.register({
-      name: 'Fancy React DOM',
-      version: '1.0.0',
-      rendererPackageName: '@fancy-react/dom',
-      bundleType: 1, // 开发环境
-      rendererConfig: {
-        bundleType: 1,
-        userAgent: navigator.userAgent,
-      },
-    });
+  const hook = (window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__;
+  if (hook && typeof hook.register === 'function') {
+    try {
+      devToolsHook = hook;
+      isDevToolsConnected = true;
+      
+      // 注册渲染器
+      devToolsHook.register({
+        name: 'Fancy React DOM',
+        version: '1.0.0',
+        rendererPackageName: '@fancy-react/dom',
+        bundleType: 1, // 开发环境
+        rendererConfig: {
+          bundleType: 1,
+          userAgent: navigator.userAgent,
+        },
+      });
+      
+      console.log('Fancy React DevTools registered successfully');
+    } catch (error) {
+      console.warn('Failed to register Fancy React DevTools:', error);
+      isDevToolsConnected = false;
+      devToolsHook = null;
+    }
   }
 }
 
@@ -64,7 +73,10 @@ export function cleanupDevTools(): void {
   }
 }
 
-// 自动初始化
+// 延迟初始化，确保DevTools hook已经准备好
 if (typeof window !== 'undefined') {
-  initializeDevTools();
+  // 使用setTimeout确保在DOM加载完成后初始化
+  setTimeout(() => {
+    initializeDevTools();
+  }, 0);
 } 

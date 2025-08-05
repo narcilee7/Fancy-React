@@ -10,9 +10,10 @@ import { commitRoot } from './scheduling';
 
 // 主流程入口：渲染 Fiber 树
 export function renderRoot(root: any) {
-  // 以 root.current 作为 Fiber 树入口
-  scheduleWork(root.current);
-  commitRoot(root.current);
+  // 如果root是FiberNode，直接使用；否则使用root.current
+  const fiberNode = root.current || root;
+  scheduleWork(fiberNode);
+  commitRoot(fiberNode);
 }
 
 // 调度入口：触发 Fiber 更新
