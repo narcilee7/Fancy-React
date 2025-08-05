@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-.pnpm-store/
 
 # Build outputs
 dist/
@@ -9,7 +8,6 @@ build/
 
 # Environment variables
 .env*
-!.env.example
 
 # IDE and editor files
 .vscode/
@@ -22,32 +20,24 @@ build/
 .DS_Store
 .DS_Store?
 ._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
 # Logs
-logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
 # Coverage and test results
 coverage/
 *.lcov
 .nyc_output
 test-results/
-playwright-report/
 
 # Cache directories
 .cache/
-.parcel-cache/
 .rollup.cache/
-.turbo/
 .npm/
 
 # Optional eslint cache
@@ -60,47 +50,29 @@ temp/
 # Package outputs
 *.tgz
 
-# Monorepo specific
-.pnpm-debug.log*
-
-# Fancy React specific
-# Development server
-.dev-server/
-
-# Bundle analysis
-bundle-analyzer-report.html
-
-# Performance profiling
-*.cpuprofile
-*.heapprofile
+# TypeScript cache
+*.tsbuildinfo
 
 # Local development
 local.config.*
 config.local.*
-.experimental/
+
+# DevTools specific
+# Extension build artifacts
+extension/dist/
+extension/build/
+*.crx
+*.pem
+
+# DevTools panel
+panel/dist/
+panel/build/
+
+# Profiler data
+profiler-data/
+*.cpuprofile
+*.heapprofile
 
 # Debug files
-debug*.log
-
-# Local storage and databases
-*.db
-*.sqlite*
-.local-storage/
-
-# Backup and archive files
-*.bak
-*.backup
-*.old
-*.zip
-*.tar.gz
-*.rar
-
-# Generated docs
-docs/build/
-api-docs/
-
-# SSL certificates
-*.pem
-*.key
-*.crt
-
+debug.log
+debug-*.log 

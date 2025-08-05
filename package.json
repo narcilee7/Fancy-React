@@ -18,7 +18,23 @@
     "type-check": "tsc --build",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release-packages": "changeset publish"
+    "release-packages": "changeset publish",
+    "build:dom": "pnpm build --filter=@fancy-react/dom",
+    "build:reconciler": "pnpm build --filter=@fancy-react/reconciler",
+    "build:shared": "pnpm build --filter=@fancy-react/shared",
+    "build:core": "pnpm build --filter=@fancy-react/core",
+    "build:scheduler": "pnpm build --filter=@fancy-react/scheduler",
+    "build:native": "pnpm build --filter=@fancy-react/native",
+    "build:server-runtime": "pnpm build --filter=@fancy-react/server-runtime",
+    "test:dom": "vitest packages/dom/test/dom.test.ts",
+    "test:core": "vitest packages/core/test/core.test.ts",
+    "test:reconciler": "vitest packages/reconciler/test/reconciler.test.ts",
+    "test:scheduler": "vitest packages/scheduler/test/scheduler.test.ts",
+    "test:shared": "vitest packages/shared/test/shared.test.ts",
+    "test:react": "vitest packages/react/test/react.test.ts",
+    "test:react-dom": "vitest packages/react-dom/test/react-dom.test.ts",
+    "test:react-dom-server": "vitest packages/react-dom-server/test/react-dom-server.test.ts",
+    "test:react-dom-test-utils": "vitest packages/react-dom-test-utils/test/react-dom-test-utils.test.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
@@ -45,8 +61,5 @@
     "packages/*",
     "examples/*",
     "benchmarks/*"
-  ],
-  "dependencies": {
-    "rollup-plugin-typescript2": "^0.36.0"
-  }
+  ]
 }

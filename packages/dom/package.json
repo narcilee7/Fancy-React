@@ -1,5 +1,55 @@
 {
   "name": "@fancy-react/dom",
   "version": "0.0.1",
-  "author": "narclee7"
+  "description": "DOM渲染器 - Fancy React的Web平台实现",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@fancy-react/core": "workspace:*",
+    "@fancy-react/reconciler": "workspace:*",
+    "@fancy-react/shared": "workspace:*",
+    "jsdom": "^26.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/node": "^20.0.0",
+    "rollup": "^4.0.0",
+    "rollup-plugin-dts": "^6.2.1",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "keywords": [
+    "react",
+    "dom",
+    "renderer",
+    "fiber",
+    "virtual-dom"
+  ],
+  "author": "narclee7",
+  "license": "MIT"
 }

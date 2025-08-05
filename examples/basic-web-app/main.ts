@@ -1,94 +1,71 @@
-import { createElement, Component, createContext } from '../../packages/core/src';
+/**
+ * 基础Web应用示例
+ * 演示Fancy React的DOM渲染功能
+ */
 
-// 创建一个Context
-const ThemeContext = createContext('light');
+import { createElement, Fragment } from '../../packages/core/src';
+import { createRoot } from '../../packages/dom/src';
 
-// 函数组件示例
+// 简单的函数组件
 function Greeting({ name }: { name: string }) {
+  return createElement('h1', { 
+    style: { color: 'blue', textAlign: 'center' } 
+  }, `Hello, ${name}!`);
+}
+
+// 计数器组件
+function Counter() {
+  let count = 0;
+  
+  const increment = () => {
+    count++;
+    console.log('Count:', count);
+    // TODO: 实现状态更新和重新渲染
+  };
+  
   return createElement('div', { 
     style: { 
-      fontSize: '18px', 
-      color: '#333',
-      marginBottom: '10px'
+      textAlign: 'center', 
+      padding: '20px',
+      border: '1px solid #ccc',
+      borderRadius: '8px',
+      margin: '20px'
     } 
-  }, `你好，${name}！`);
-}
-
-// 类组件示例
-class Counter extends Component<{}, { count: number }> {
-  constructor(props: {}) {
-    super(props);
-    this.state = { count: 0 };
-  }
-
-  increment = () => {
-    this.setState({ count: this.state.count + 1 });
-  }
-
-  decrement = () => {
-    this.setState({ count: this.state.count - 1 });
-  }
-
-  render() {
-    return createElement('div', { className: 'counter' },
-      createElement('button', { onClick: this.decrement }, '-'),
-      createElement('span', { className: 'count' }, this.state.count.toString()),
-      createElement('button', { onClick: this.increment }, '+')
-    );
-  }
-}
-
-// Context消费者组件
-function ThemeDisplay() {
-  return createElement(ThemeContext.Consumer, { children: (theme: string) =>
-    createElement('div', { 
-      style: { 
-        padding: '10px',
-        backgroundColor: theme === 'dark' ? '#333' : '#f0f0f0',
-        color: theme === 'dark' ? '#fff' : '#333',
+  }, [
+    createElement('h2', null, `Count: ${count}`),
+    createElement('button', {
+      onClick: increment,
+      style: {
+        padding: '10px 20px',
+        fontSize: '16px',
+        backgroundColor: '#007bff',
+        color: 'white',
+        border: 'none',
         borderRadius: '4px',
-        marginTop: '10px'
+        cursor: 'pointer'
       }
-    }, `当前主题: ${theme}`)
-  });
+    }, 'Increment')
+  ]);
 }
 
 // 主应用组件
 function App() {
-  return createElement('div', {},
-    createElement('h2', {}, 'Fancy-React 功能演示'),
-    createElement(Greeting, { name: '开发者' }),
-    createElement('h3', {}, '计数器组件（类组件）'),
-    createElement(Counter, {}),
-    createElement('h3', {}, 'Context 示例'),
-    createElement(ThemeContext.Provider, { value: 'dark' },
-      createElement(ThemeDisplay, {})
-    )
-  );
+  return createElement(Fragment, null, [
+    createElement(Greeting, { name: 'Fancy React' }),
+    createElement(Counter, null),
+    createElement('p', { 
+      style: { textAlign: 'center', color: '#666' } 
+    }, '这是一个使用Fancy React构建的简单应用')
+  ]);
 }
 
 // 渲染应用
-function render() {
-  const rootElement = document.getElementById('root');
-  if (rootElement) {
-    // 这里需要与reconciler集成来实现真正的渲染
-    // 目前只是展示createElement的使用
-    console.log('App element:', App());
-    
-    // 临时显示一些信息
-    rootElement.innerHTML = `
-      <div style="padding: 20px; border: 2px dashed #ccc; border-radius: 8px;">
-        <h3>Fancy-React 已加载</h3>
-        <p>✅ createElement API 已实现</p>
-        <p>✅ 函数组件支持</p>
-        <p>✅ 类组件支持</p>
-        <p>✅ Context 系统</p>
-        <p>🔄 下一步：集成 Reconciler 实现真实渲染</p>
-        <p>请查看控制台查看生成的 ReactElement 结构</p>
-      </div>
-    `;
-  }
-}
-
-// 启动应用
-render(); 
+const container = document.getElementById('root');
+if (container) {
+  const root = createRoot(container);
+  root.render(createElement(App, null));
+  
+  console.log('Fancy React应用已启动！');
+} else {
+  console.error('找不到root容器元素');
+} 

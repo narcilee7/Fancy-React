@@ -30,7 +30,7 @@ export const PassiveMask = Update;
 export const HookPassive = 0b0000000000000000000100000000;
 
 // ref 相关
-export const Ref = 0b0000000000000000001000000000;
+export const RefFlag = 0b0000000000000000001000000000;
 
 // Suspense 相关
 export const ShouldCapture = 0b0000000000000001000000000000;
@@ -61,12 +61,12 @@ export const MutationMask =
   Update | 
   ChildDeletion | 
   ContentReset | 
-  Ref | 
+  RefFlag | 
   Hydrating;
 
 export const LayoutMaskAll = 
   Update | 
-  Ref | 
+  RefFlag | 
   HookLayout;
 
 export const PassiveMaskAll = 
@@ -74,7 +74,7 @@ export const PassiveMaskAll =
   HookPassive;
 
 // 静态标志位（不会在运行时更改）
-export const StaticMask = LayoutMask | PassiveMask | Ref;
+export const StaticMask = LayoutMask | PassiveMask | RefFlag;
 
 // 所有标志位的联合类型
 export type FiberFlags = number;
