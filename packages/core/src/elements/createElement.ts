@@ -23,16 +23,19 @@ function createElement(
   let ref: Ref = null;
   const props: any = {};
 
-  if (config.key !== undefined) {
-    key = config.key;
-  }
-  if (config.ref !== undefined) {
-    ref = config.ref;
-  }
+  // 处理config为null或undefined的情况
+  if (config != null) {
+    if (config.key !== undefined) {
+      key = config.key;
+    }
+    if (config.ref !== undefined) {
+      ref = config.ref;
+    }
 
-  for (const propName in config) {
-    if (config.hasOwnProperty(propName) && propName !== 'key' && propName !== 'ref') {
-      props[propName] = config[propName];
+    for (const propName in config) {
+      if (config.hasOwnProperty(propName) && propName !== 'key' && propName !== 'ref') {
+        props[propName] = config[propName];
+      }
     }
   }
 

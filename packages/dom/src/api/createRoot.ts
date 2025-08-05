@@ -18,6 +18,9 @@ export function createRoot(container: DOMContainer, options?: { hydrate?: boolea
   // 创建Fiber根节点
   const root = createFiberNode(WorkTag.HostRoot, null, null);
   
+  // 设置stateNode为容器
+  root.stateNode = container;
+  
   // 创建ReactRoot对象
   const reactRoot: ReactRoot = {
     render(children: any) {

@@ -82,8 +82,18 @@ function commitPlacement(fiber: FiberNode) {
       child = child.sibling;
     }
   }
-  // TODO: 挂载到父节点
-  // 需要找到父节点的宿主节点，然后调用 appendChild
+  
+  // 挂载到父节点
+  const parent = fiber.return;
+  if (parent && parent.stateNode) {
+    // 如果是HostRoot，直接挂载到容器
+    if (parent.tag === 3) { // HostRoot
+      appendInitialChild(parent.stateNode, fiber.stateNode);
+    } else {
+      // 否则挂载到父节点的宿主节点
+      appendInitialChild(parent.stateNode, fiber.stateNode);
+    }
+  }
 }
 
 /**

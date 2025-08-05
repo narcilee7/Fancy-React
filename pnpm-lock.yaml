@@ -60,6 +60,15 @@ importers:
         specifier: ^5.0.0
         version: 5.4.19(@types/node@20.19.9)
 
+  examples/dom-example:
+    devDependencies:
+      typescript:
+        specifier: ^5.3.0
+        version: 5.8.3
+      vite:
+        specifier: ^5.0.0
+        version: 5.4.19(@types/node@20.19.9)
+
   packages/core:
     dependencies:
       '@fancy-react/shared':
